@@ -131,8 +131,7 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
           window.style.height = '100%'
           window.style.left = '0px';
           window.style.top = '0px';
-          document.querySelector("#"+name+" .tab").removeEventListener('mousedown',moving_tap);
-          document.querySelector("#"+name+" .tab").removeEventListener('dblclick',moving_tap);
+          CallMovingTab(false);
           document.querySelector("#"+name).removeEventListener('focus',focus);
         }else{
           State.SizeStateMax = 0;
@@ -141,36 +140,71 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
           window.style.left = State.pre.left;
           window.style.top = State.pre.top;
           document.querySelector("#"+name).addEventListener('mousedown',focus);
-          document.querySelector("#"+name+" .tab").addEventListener('mousedown',moving_tap);
-          document.querySelector("#"+name+" .tab").addEventListener('dblclick',moving_tap);
+          CallMovingTab(true);
         }
       }
 
       function minimize(){
         document.querySelector("#"+name).className+=' minimize';
         document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace("execute","mini");
+        CallMovingTab(false)
         function unminimize(){
           document.querySelector("#"+name).className=document.querySelector("#"+name).className.replace(" minimize","")
           document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace("mini","execute");
           document.querySelector("."+name).removeEventListener('click',unminimize);
+          CallMovingTab(true);
         }
         document.querySelector("."+name).addEventListener('click',unminimize);
       }
 
-      function _close(){
-        close(id);
-        document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace(" execute","");
+      function CallResizingTabMaxMini(status){
+        if(status){
+          document.getElementById(name+'_minimize').addEventListener('click',minimize);
+          document.getElementById(name+'_maximize').addEventListener('click',ChangeMaximized);
+        }else{
+          document.getElementById(name+'_minimize').removeEventListener('click',minimize);
+          document.getElementById(name+'_maximize').removeEventListener('click',ChangeMaximized);
+        }
       }
+
+      function CallMovingTab(status){
+        if(status){
+          document.querySelector("#"+name+" .tab").addEventListener('mousedown',moving_tap);
+          document.querySelector("#"+name+" .tab").addEventListener('dblclick',moving_tap);
+        }else{
+          document.querySelector("#"+name+" .tab").removeEventListener('mousedown',moving_tap);
+          document.querySelector("#"+name+" .tab").removeEventListener('dblclick',moving_tap);
+        }
+      }
+      
+      function CallFocus(status){
+        if(status){
+          document.querySelector("#li-"+name).addEventListener('mousedown',focus);
+          document.querySelector("#"+name).addEventListener('mousedown',focus);
+        }else{
+          document.querySelector("#li-"+name).removeEventListener('mousedown',focus);
+          document.querySelector("#"+name).removeEventListener('mousedown',focus);
+        }
+      }
+
+      function _close(){
+        document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace("execute","");
+        document.getElementById(name+'_close').removeEventListener('click',_close)
+        CallResizingTabMaxMini(false);
+        CallMovingTab(false);
+        CallFocus(false);
+        close(id);
+      }
+
+
       el.style.minWidth = MinWidth+'px';
       el.style.minHeight = MinHeight+'px';
       console.log('OpenTask component load : '+name);
       document.querySelector("#li-"+name).className+=' execute';
-      document.querySelector("#"+name).addEventListener('mousedown',focus);
-      document.querySelector("#"+name+" .tab").addEventListener('mousedown',moving_tap);
-      document.querySelector("#"+name+" .tab").addEventListener('dblclick',moving_tap);
-      document.getElementById(name+'_close').addEventListener('click',_close)
-      document.getElementById(name+'_minimize').addEventListener('click',minimize)
-      document.getElementById(name+'_maximize').addEventListener('click',ChangeMaximized)
+      CallFocus(true);
+      CallMovingTab(true);
+      CallResizingTabMaxMini(true);
+      document.getElementById(name+'_close').addEventListener('click',_close);
   },[])
 
   return(

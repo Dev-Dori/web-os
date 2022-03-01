@@ -39,7 +39,7 @@ function Window(App){
         }
       };
   },[])
-  console.log('Window component load')
+  // console.log('Window component load')
   var [article, setarticle] = useState([]);
   var [zindex, SetZindex] = useState(0);
   var ExecuteApp = App.list, i=0, CreateAppIcon = [];
@@ -69,6 +69,7 @@ function Window(App){
           <div key={"li-"+i+"-name"} className='name'>{ExecuteApp[i].name}</div>
           <img key={ExecuteApp[i].name} className={i+" ico "+ExecuteApp[i].name} value={ExecuteApp[i].name} 
               src={require(`${(ExecuteApp[i].icon ? ExecuteApp[i].icon : './img/icon/Terminal.png')}`)}
+              alt={ExecuteApp[i].name}
               onClick={function(e){
                 if(!ExecuteApp[e.target.className[0]].state){
                     ExecuteApp[e.target.className[0]].state=true;
@@ -99,6 +100,7 @@ function Window(App){
             <div className='name'>folder</div>
             <img className={"5 ico folder"} value="folder" 
                 src={require(`./img/icon/folder.png`)}
+                alt='folder'
                 onClick={function(e){
                   if(!ExecuteApp[e.target.className[0]].state){
                       ExecuteApp[e.target.className[0]].state=true;

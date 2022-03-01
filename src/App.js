@@ -21,6 +21,9 @@ function App(){
       +"3. 탭 사이즈 조절 기능 추가\n"
       +"4. 앱 - 탭(독) 추가\n"
       +"5. 탭 - 닫기, 최소화, 최대화 구현\n"
+      +"6. 탭 - 버그 수정\n"
+      +"7. 탭 - 독에 있는 아이콘 클릭시 실행중인 해당 앱이 최상단에 노출되도록 패치\n"
+      +"8. 탭 - OpenTask 파일 함수화\n"
       ,state:false, IsDir:false, minsize:{width:400,height:400}, dock:true,
       icon:"./img/icon/Settings.png"
     },
