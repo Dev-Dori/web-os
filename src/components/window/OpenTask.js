@@ -154,6 +154,7 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
           document.querySelector("."+name).removeEventListener('click',unminimize);
           CallMovingTab(true);
         }
+        
         document.querySelector("."+name).addEventListener('click',unminimize);
       }
 
@@ -188,12 +189,12 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
       }
 
       function _close(){
-        document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace("execute","");
+        document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace(" execute","");
         document.getElementById(name+'_close').removeEventListener('click',_close)
         CallResizingTabMaxMini(false);
         CallMovingTab(false);
         CallFocus(false);
-        close(id);
+        close(name);
       }
 
 
