@@ -4,7 +4,7 @@ import './stylesheet.css';
 
 function Window(App){
     useEffect(()=>{
-      let icons = document.querySelectorAll(".ico");
+      let icons = document.querySelectorAll(".main-app li .ico");
       
       icons.forEach((item, index) => {
         item.addEventListener("mouseover", (e) => {
@@ -63,7 +63,7 @@ function Window(App){
     if(ExecuteApp[i].state){
       article.push(excute(i,ExecuteApp[i].name,ExecuteApp[i].page,ExecuteApp[i].zindex,ExecuteApp[i].minsize))
     }
-    if(ExecuteApp[i].dock){
+    if(ExecuteApp[i].dock && !ExecuteApp[i].IsDir){
       CreateAppIcon.push(
         <li key={"li-"+i} className={"li-"+i} id={"li-"+ExecuteApp[i].name}>
           <div key={"li-"+i+"-name"} className='name'>{ExecuteApp[i].name}</div>
@@ -86,15 +86,29 @@ function Window(App){
   
   return (
     <div className='screen'>
-      {/* <div className='AppIcon'>
-        {CreateAppIcon}
-      </div> */}
       <div className="window-container">
         {article}
       </div>
       <div className='dock'>
         <div className='dock-container'>
-          {CreateAppIcon}
+          <div className='main-app'>
+            {CreateAppIcon}
+          </div>
+          <div className='Directory'>
+            <li className={"li-0"} id="li-folder">
+            <div className='name'>folder</div>
+            <img className={"5 ico folder"} value="folder" 
+                src={require(`./img/icon/folder.png`)}
+                onClick={function(e){
+                  if(!ExecuteApp[e.target.className[0]].state){
+                      ExecuteApp[e.target.className[0]].state=true;
+                      ExecuteApp[e.target.className[0]].zindex=zindex+1;
+                      SetZindex(zindex+1);
+                    }
+                }}>
+            </img>
+          </li>
+          </div>
         </div>
       </div>
     </div>

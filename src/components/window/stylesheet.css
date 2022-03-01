@@ -51,6 +51,11 @@ body{
   left: 50%;
   transform: translateX(-50%);
 }
+
+.dock-container{
+  display:flex;
+}
+
 .dock .dock-container {
   padding: 3px;
   width: auto;
@@ -64,13 +69,12 @@ body{
   -webkit-backdrop-filter: blur(13px);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
-.dock .dock-container .li-bin {
-  margin-left: 20px;
-  border-left: 1.5px solid rgba(255, 255, 255, 0.4);
-  padding: 0px 10px;
-  padding-right: 0px;
+
+.dock .dock-container div{
+  display: flex;
 }
-.dock .dock-container .execute::after {
+
+.dock .dock-container div .execute::after {
   position: absolute;
   width: 5px;
   height: 5px;
@@ -79,7 +83,7 @@ body{
   content: "";
   bottom: 2px;
 }
-.dock .dock-container .mini::after {
+.dock .dock-container div .mini::after  {
   position: absolute;
   width: 5px;
   height: 5px;
@@ -97,7 +101,7 @@ body{
   content: "";
   bottom: 2px;
 } */
-.dock .dock-container li {
+.dock .dock-container div li {
   list-style: none;
   display: flex;
   align-items: center;
@@ -108,10 +112,10 @@ body{
   transition: 0.2s;
   transform-origin: 50% 100%;
 }
-.dock .dock-container li:hover {
+.dock .dock-container div li:hover{
   margin: 0px 13px 0px 13px;
 }
-.dock .dock-container li .name {
+.dock .dock-container div li .name{
   position: absolute;
   top: -70px;
   background: rgba(0, 0, 0, 0.5);
@@ -124,7 +128,7 @@ body{
   border-radius: 5px;
   visibility: hidden;
 }
-.dock .dock-container li .name::after {
+.dock .dock-container div li .name::after {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -136,22 +140,27 @@ body{
   border-right: 10px solid transparent;
   border-top: 10px solid rgba(0, 0, 0, 0.5);
 }
-.dock .dock-container li .ico {
+.dock .dock-container div li .ico {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: 0.2s;
 }
 
-.dock .dock-container li .ico-bin:hover {
-  /* margin-left: 10px; */
-}
 
-.dock-container>li:hover .name{
+.dock-container div>li:hover .name{
   visibility: visible !important;
 }
 
+#li-folder .ico:hover{
+  transform: scale(1.5)  translateY(-10px);
+}
 
+.Directory{
+  margin-left: 10px;
+  border-left: 1.5px solid rgba(255, 255, 255, 0.4);
+  padding-left: 10px;
+}
 
 /* ============================== */
 /* window - 컨테이너 전체 */
@@ -186,13 +195,6 @@ body{
   bottom: 200px;
 }
 
-
-
-.content{ /* 컨테이너 공통 색상 */
-  width: 100%;
-  height: 100%;
-  background-color: rebeccapurple;
-}
 
 
 
@@ -326,6 +328,15 @@ body{
 
 
 /* --------------------- */
+
+
+.content{ /* 컨테이너 공통 색상 */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.9);
+  color: white;
+  white-space: pre-wrap;
+}
 
 /* ========= */
 /* 터미널 */
