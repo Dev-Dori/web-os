@@ -23,7 +23,7 @@ function App(){
               Terminal:{
                 page:'DevDori@world:~/Desktop$ echo "현재 개발 진행중입니다!!!!"\n현재 개발 진행중입니다!!!!',
                 state:false, IsDir:false, minsize:{width:400,height:400}, dock:true,
-                icon:"./img/icon/Terminal.png"
+                icon:"images/icon/Terminal.png"
               },
               Patch:{
                 page:"<패치노트>\n"+
@@ -38,22 +38,22 @@ function App(){
                 +"9. 디렉토리 - 변수 구조 딕셔너리로 변경\n"
                 +"10. 바탕화면 - 아이콘 추가\n"
                 ,state:false, IsDir:false, minsize:{width:400,height:400}, dock:true,
-                icon:"./img/icon/Settings.png"
+                icon:"images/icon/Settings.png"
               },
               Contact:{
                 page:'Contact here Please',
                 state:false, IsDir:false, minsize:{width:400,height:400}, dock:true,
-                icon:"./img/icon/mail.png"
+                icon:"images/icon/mail.png"
               },
               Conta151515ct:{
                 page:'Contact here Please',
                 state:false, IsDir:false, minsize:{width:400,height:400}, dock:true,
-                icon:"./img/icon/mail.png"
+                icon:"images/icon/mail.png"
               },
               FileManager:{
                 page:'This page is FileManager',
                 state:false, minsize:{width:400,height:400}, dock:false,
-                icon:"./img/icon/Terminal.png"
+                icon:"images/icon/Terminal.png"
               },
             },{IsDir:true}]
           },{IsDir:true}]

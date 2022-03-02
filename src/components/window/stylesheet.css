@@ -15,7 +15,7 @@ body{
 /* 스크린 */
 /* ============================== */
 #main{
-  background-image: url('./img/wallpaper/wallpaper.jpg');
+  background-image: url('../../../public/images/wallpaper/wallpaper.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -406,6 +406,5 @@ body{
 #Attribution>.content{
   background-color: rgba(21, 255, 0, 0.473);
 }
-
 
 

@@ -65,10 +65,10 @@ function Window(directory){
     }
     if(ExecuteApp[key].dock && !ExecuteApp[key].IsDir){
       CreateAppIcon.push(
-        <li key={"li-"+i} className={"li-"+i} id={"li-"+key}>
+        <li key={"li-"+i} className={"li-"+i+" "+key} id={"li-"+key}>
           <div key={"li-"+i+"-name"} className='name'>{key}</div>
           <img key={key} className={i+" ico "+key} value={key} 
-               src={require(`${(ExecuteApp[key].icon ? ExecuteApp[key].icon : './img/icon/Terminal.png')}`)}
+               src={(ExecuteApp[key].icon ? ExecuteApp[key].icon : 'images/icon/Terminal.png')}
                alt={key}
                onClick={function(e){
                if(!ExecuteApp[e.target.alt].state){
@@ -87,15 +87,31 @@ function Window(directory){
   for(key in DesktopApp){
     if(DesktopApp[key].length){
       Icon.push(
-        <a key={'Desktop-icon-'+key} className='Desktop-icon'>
-          <img key={"Desktop-icon-img-"+key} className='Desktop-icon-img' src={require('./img/icon/FileManager.png')}></img>
+        <a key={'Desktop-icon-'+key} className={'Desktop-icon'+" "+key}>
+          <img key={"Desktop-icon-img-"+key} className='Desktop-icon-img' src='images/icon/FileManager.png' 
+               alt={key}
+               onClick={function(e){
+                if(!ExecuteApp[e.target.alt].state){
+                    ExecuteApp[e.target.alt].state=true;
+                    ExecuteApp[e.target.alt].zindex=zindex+1;
+                    SetZindex(zindex+1);
+                  }
+               }}></img>
           <div key={"Desktop-icon-name-"+key} className={'Desktop-icon-name'}>{key}</div>
         </a>
       )
     }else{
       Icon.push(
-        <a key={'Desktop-icon-'+key} className='Desktop-icon'>
-          <img key={"Desktop-icon-img-"+key} className='Desktop-icon-img' src={require(`${(ExecuteApp[key].icon ? ExecuteApp[key].icon : './img/icon/Terminal.png')}`)}></img>
+        <a key={'Desktop-icon-'+key} className={'Desktop-icon'+" "+key}>
+          <img key={"Desktop-icon-img-"+key} className='Desktop-icon-img' src={(ExecuteApp[key].icon ? ExecuteApp[key].icon : 'images/icon/Terminal.png')} 
+               alt={key}
+               onClick={function(e){
+                if(!ExecuteApp[e.target.alt].state){
+                    ExecuteApp[e.target.alt].state=true;
+                    ExecuteApp[e.target.alt].zindex=zindex+1;
+                    SetZindex(zindex+1);
+                  }
+               }}></img>
           <div key={"Desktop-icon-name-"+key} className={'Desktop-icon-name'}>{key}</div>
         </a>
       )
@@ -117,10 +133,10 @@ function Window(directory){
             {CreateAppIcon}
           </div>
           <div className='Directory'>
-            <li className={"li-0"} id="li-FileManager">
+            <li className={"li-0 "+key} id="li-FileManager">
             <div className='name'>FileManager</div>
             <img className={"5 ico FileManager"} value="FileManager" 
-                src={require(`./img/icon/FileManager.png`)}
+                src='images/icon/FileManager.png'
                 alt='FileManager'
                 onClick={function(e){
                   if(!ExecuteApp[e.target.alt].state){
