@@ -145,17 +145,21 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
       }
 
       function minimize(){
+        document.querySelector("#li-"+name).removeEventListener('click',minimize);
         document.querySelector("#"+name).className+=' minimize';
         document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace("execute","mini");
         CallMovingTab(false)
         function unminimize(){
+          document.querySelector("#li-"+name).addEventListener('click',minimize);
           document.querySelector("#"+name).className=document.querySelector("#"+name).className.replace(" minimize","")
           document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace("mini","execute");
-          document.querySelector("."+name).removeEventListener('click',unminimize);
+          document.querySelectorAll('.'+name)[0].removeEventListener('click',unminimize);
+          document.querySelectorAll('.'+name)[1].removeEventListener('click',unminimize);
           CallMovingTab(true);
         }
         
-        document.querySelector("."+name).addEventListener('click',unminimize);
+        document.querySelectorAll('.'+name)[0].addEventListener('click',unminimize);
+        document.querySelectorAll('.'+name)[1].addEventListener('click',unminimize);
       }
 
       function CallResizingTabMaxMini(status){
@@ -180,10 +184,10 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
       
       function CallFocus(status){
         if(status){
-          document.querySelector("#li-"+name).addEventListener('mousedown',focus);
+          document.querySelector("#li-"+name).addEventListener('click',focus);
           document.querySelector("#"+name).addEventListener('mousedown',focus);
         }else{
-          document.querySelector("#li-"+name).removeEventListener('mousedown',focus);
+          document.querySelector("#li-"+name).removeEventListener('click',focus);
           document.querySelector("#"+name).removeEventListener('mousedown',focus);
         }
       }
@@ -205,6 +209,7 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
       CallFocus(true);
       CallMovingTab(true);
       CallResizingTabMaxMini(true);
+      document.querySelector("#li-"+name).addEventListener('click',minimize);
       document.getElementById(name+'_close').addEventListener('click',_close);
   },[])
 
