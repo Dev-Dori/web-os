@@ -151,11 +151,11 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
         CallMovingTab(false)
         function unminimize(){
           document.querySelector("#li-"+name).removeEventListener('click',unminimize);
+          document.querySelectorAll('.'+name)[0].removeEventListener('click',unminimize);
+          document.querySelectorAll('.'+name)[1].removeEventListener('click',unminimize);
           document.querySelector("#li-"+name).addEventListener('click',minimize);
           document.querySelector("#"+name).className=document.querySelector("#"+name).className.replace(" minimize","")
           document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace("mini","execute");
-          document.querySelectorAll('.'+name)[0].removeEventListener('click',unminimize);
-          document.querySelectorAll('.'+name)[1].removeEventListener('click',unminimize);
           CallMovingTab(true);
         }
         document.querySelector("#li-"+name).addEventListener('click',unminimize);
@@ -194,6 +194,8 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
       }
 
       function _close(){
+        history.pushState('', '', '#');
+        document.querySelector("#li-"+name).removeEventListener('click',minimize);
         document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace(" execute","");
         document.getElementById(name+'_close').removeEventListener('click',_close)
         CallResizingTabMaxMini(false);
