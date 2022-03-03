@@ -1,5 +1,5 @@
 import React from 'react';
-import Window from './components/window/window';
+import Window from './index';
 
 function App(){
   console.log('App component load')
@@ -37,6 +37,7 @@ function App(){
                 +"8. 탭 - OpenTask 파일 함수화\n"
                 +"9. 디렉토리 - 변수 구조 딕셔너리로 변경\n"
                 +"10. 바탕화면 - 아이콘 추가\n"
+                +"11. index.js 코드 정리\n"
                 ,state:false, IsDir:false, minsize:{width:400,height:400}, dock:true,
                 icon:"images/icon/Settings.png"
               },
