@@ -7,7 +7,7 @@ const CreateIcon = ({DesktopApp,ExecuteApp,execute}) => {
     for(var key in DesktopApp){
         if(DesktopApp[key].length){
             Icon.push(
-            <a key={'Desktop-icon-'+key} className={'Desktop-icon'+" "+key} href={'#'+key}>
+            <a key={'Desktop-icon-'+key} className={'Desktop-icon'+" "+key} href={'#/'+key}>
                 <img key={"Desktop-icon-img-"+key} className='Desktop-icon-img' src='images/icon/FileManager.png' 
                     alt={key}
                     onClick={execute}></img>
@@ -16,7 +16,7 @@ const CreateIcon = ({DesktopApp,ExecuteApp,execute}) => {
             )
         }else{
             Icon.push(
-            <a key={'Desktop-icon-'+key} className={'Desktop-icon'+" "+key} href={"#"+key}>
+            <a key={'Desktop-icon-'+key} className={'Desktop-icon'+" "+key} href={"#/"+key}>
                 <img key={"Desktop-icon-img-"+key} className='Desktop-icon-img' src={(ExecuteApp[key].icon ? ExecuteApp[key].icon : 'images/icon/Terminal.png')} 
                     alt={key}
                     onClick={execute}></img>

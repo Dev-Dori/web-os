@@ -51,7 +51,7 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
               index = i;
             }
           }
-          if(doc[index].id != name){
+          if(doc[index] && doc[index].id != name){
             _focus(max+1);
             document.getElementById(name).style.zIndex = max+1;
           }

@@ -15,8 +15,8 @@ function Index(directory){
     window.addEventListener('popstate', function(){SetUrl(document.URL);})
   })
   
-  function execute(e){
-    url = document.URL.split("#")[1];
+  function execute(){
+    url = document.URL.split("#/")[1];
     if(url&&ExecuteApp[url]){
       if(!ExecuteApp[url].state){
         ExecuteApp[url].state=true;

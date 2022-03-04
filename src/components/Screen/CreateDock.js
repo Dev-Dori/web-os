@@ -45,7 +45,7 @@ const CreateDock = ({ExecuteApp,execute}) => {
           CreateAppIcon.push(
           <li key={"li-"+i} className={"li-"+i+" "+key} id={"li-"+key}>
                 <div key={"li-"+i+"-name"} className='name'>{key}</div>
-              <a href={"#"+key}>
+              <a href={"#/"+key}>
                 <img key={key} className={i+" ico "+key} value={key} 
                     src={(ExecuteApp[key].icon ? ExecuteApp[key].icon : 'images/icon/Terminal.png')}
                     alt={key}
@@ -65,13 +65,15 @@ const CreateDock = ({ExecuteApp,execute}) => {
         </div>
         <div className='Directory'>
           <li className={"li-0 "+key} id="li-FileManager">
-          <div className='name'>FileManager</div>
-          <img className={"5 ico FileManager"} value="FileManager" 
-              src='images/icon/FileManager.png'
-              alt='FileManager'
-              onClick={execute}>
-          </img>
-        </li>
+              <div className='name'>FileManager</div>
+              <a href={"#/FileManager"}>
+              <img className={"5 ico FileManager"} value="FileManager" 
+                  src='images/icon/FileManager.png'
+                  alt='FileManager'
+                  onClick={execute}>
+              </img>
+            </a>
+          </li>
         </div>
       </div>
     );
