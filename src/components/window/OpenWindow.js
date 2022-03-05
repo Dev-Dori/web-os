@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useEffect } from 'react';
-import './stylesheet.css';
+import '../stylesheet.css';
 
 
 const OpenTask = ({id, name, page, zindex, close, minsize, _focus, content}) => {    
@@ -51,12 +51,12 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus, content}) => 
               index = i;
             }
           }
-          if(doc[index].id != name){
+          if(doc[index]&&doc[index].id&&doc[index].id != name){
             _focus(max+1);
             document.getElementById(name).style.zIndex = max+1;
           }
       }   
-
+      
       const el = document.querySelector("#"+name);
       var resizers = document.querySelectorAll("#"+name+">.resizer-set>.resizer");
       let isResizing = false;

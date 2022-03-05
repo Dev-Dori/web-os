@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react';
 import CreateWindow from './Screen/CreateWindow'
 import CreateIcon from './Screen/CreateIcon';
 import CreateDock from './Screen/CreateDock';
+import CreateTopMenuBar from './Screen/CreateTopMenuBar';
+import './stylesheet.css';
 
 function Index(directory){
   var [article, setarticle] = useState({});
@@ -32,6 +34,9 @@ function Index(directory){
     <div className='screen'>
       <div className='wallpaper'></div>
       <div className='Desktop'>
+        <div className='Menubar-container'>
+          <CreateTopMenuBar />
+        </div>
         <div className="window-container">
           <CreateWindow ExecuteApp={ExecuteApp} setarticle={setarticle} SetZindex={SetZindex} zindex={zindex}/>
         </div>
