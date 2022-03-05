@@ -10,22 +10,21 @@ function App(){
         devdori:[{
           Desktop:[{
             Projects:[{},{IsDir:true}],
-            Experience:[{},{IsDir:true}],
-            Awards:[{},{IsDir:true}],
-            Education:[{},{IsDir:true}],
+            QNA:[],
+            Awards:[],
+            Member:[],
             Terminal:[],
-            Patch:[],
             Contact:[],
-            Conta151515ct:[],
-            FileManager:[],
+            About:[],
+            Information:[],
           },{IsDir:true}],
           Apps:[{
             Terminal:{
-              page:'DevDori@world:~/Desktop$ echo "현재 개발 진행중입니다!!!!"\n현재 개발 진행중입니다!!!!',
+              page:'DevDori@world:~/Desktop$ echo "아쉽지만 현재 터미널은 개발중입니다 ㅠㅠ"\n아쉽지만 현재 터미널은 개발중입니다 ㅠㅠ',
               state:false, IsDir:false, minsize:{width:400,height:400}, dock:true,
               icon:"images/icon/Terminal.png"
             },
-            Patch:{
+            Information:{
               page:"<패치노트>\n"+
               "1. 탭 기능 추가\n"
               +"2. 탭 드래그 기능 추가\n"
@@ -39,23 +38,42 @@ function App(){
               +"10. 바탕화면 - 아이콘 추가\n"
               +"11. index.js 코드 정리\n"
               +"12. url로 실행 가능 패치\n"
-              ,state:false, IsDir:false, minsize:{width:400,height:400}, dock:true,
+              ,state:false, IsDir:false, minsize:{width:600,height:500}, dock:true,
               icon:"images/icon/Settings.png"
             },
             Contact:{
               page:'Contact here Please',
               state:false, IsDir:false, minsize:{width:400,height:400}, dock:true,
-              icon:"images/icon/mail.png"
+              icon:"images/icon/message.png"
             },
-            Conta151515ct:{
-              page:'Contact here Please',
-              state:false, IsDir:false, minsize:{width:400,height:400}, dock:true,
-              icon:"images/icon/mail.png"
+            About:{
+              page:'This page is FileManager',
+              state:false, minsize:{width:400,height:400}, dock:true,
+              icon:"images/icon/About.png",
+              content:"contents/About/"
+            },
+            Member:{
+              page:'This page is FileManager',
+              state:false, minsize:{width:400,height:400}, dock:false,
+              icon:"images/icon/member.png",
+              content:"contents/Member/"
+            },
+            Awards:{
+              page:'This page is Awards',
+              state:false, minsize:{width:400,height:400}, dock:false,
+              icon:"images/icon/calendar.png",
+              content:"contents/Awards/"
+            },
+            QNA:{
+              page:'This page is QNA',
+              state:false, minsize:{width:400,height:400}, dock:false,
+              icon:"images/icon/qna.png",
+              content:"contents/QNA/"
             },
             FileManager:{
               page:'This page is FileManager',
-              state:false, minsize:{width:400,height:400}, dock:false,
-              icon:"images/icon/Terminal.png"
+              state:false, IsDir:true,  minsize:{width:400,height:400}, dock:false,
+              icon:"images/icon/member.png"
             },
           },{IsDir:true}]
         },{IsDir:true}]

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import './stylesheet.css';
 
 
-const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {    
+const OpenTask = ({id, name, page, zindex, close, minsize, _focus, content}) => {    
   useEffect(()=>{
       let MinWidth = 0, MinHeight = 0;
       if(minsize){
@@ -51,7 +51,7 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
               index = i;
             }
           }
-          if(doc[index] && doc[index].id != name){
+          if(doc[index].id != name){
             _focus(max+1);
             document.getElementById(name).style.zIndex = max+1;
           }
@@ -67,7 +67,7 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
             if(!State.SizeStateMax){
               currentResizer = e.target;
               isResizing = true;
-              
+              document.getElementById(name).style['pointer-events'] = "none";
               window.addEventListener("mousemove", mousemove);
               window.addEventListener("mouseup", mouseup);
             
@@ -113,6 +113,7 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
               function mouseup(){
                   window.removeEventListener("mousemove", mousemove);
                   window.removeEventListener("mouseup", mouseup);
+                  document.getElementById(name).style['pointer-events'] = "auto";
                   isResizing = false;
               }
             }
@@ -145,22 +146,22 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
       }
 
       function minimize(){
-        document.querySelector("#li-"+name).removeEventListener('click',minimize);
+        document.querySelector("#li-"+name)?document.querySelector("#li-"+name).removeEventListener('click',minimize):"";
         document.querySelector("#"+name).className+=' minimize';
-        document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace("execute","mini");
+        document.querySelector("#li-"+name)?document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace("execute","mini"):"";
         CallMovingTab(false)
         function unminimize(){
-          document.querySelector("#li-"+name).removeEventListener('click',unminimize);
+          document.querySelector("#li-"+name)?document.querySelector("#li-"+name).removeEventListener('click',unminimize):"";
           document.querySelectorAll('.'+name)[0].removeEventListener('click',unminimize);
-          document.querySelectorAll('.'+name)[1].removeEventListener('click',unminimize);
-          document.querySelector("#li-"+name).addEventListener('click',minimize);
+          document.querySelectorAll('.'+name)[1]?document.querySelectorAll('.'+name)[1].removeEventListener('click',unminimize):"";
+          document.querySelector("#li-"+name)?document.querySelector("#li-"+name).addEventListener('click',minimize):"";
           document.querySelector("#"+name).className=document.querySelector("#"+name).className.replace(" minimize","")
-          document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace("mini","execute");
+          document.querySelector("#li-"+name)?document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace("mini","execute"):"";
           CallMovingTab(true);
         }
-        document.querySelector("#li-"+name).addEventListener('click',unminimize);
+        document.querySelector("#li-"+name)?document.querySelector("#li-"+name).addEventListener('click',unminimize):"";
         document.querySelectorAll('.'+name)[0].addEventListener('click',unminimize);
-        document.querySelectorAll('.'+name)[1].addEventListener('click',unminimize);
+        document.querySelectorAll('.'+name)[1]?document.querySelectorAll('.'+name)[1].addEventListener('click',unminimize):"";
       }
 
       function CallResizingTabMaxMini(status){
@@ -185,18 +186,18 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
       
       function CallFocus(status){
         if(status){
-          document.querySelector("#li-"+name).addEventListener('click',focus);
+          document.querySelector("#li-"+name)?document.querySelector("#li-"+name).addEventListener('click',focus):"";
           document.querySelector("#"+name).addEventListener('mousedown',focus);
         }else{
-          document.querySelector("#li-"+name).removeEventListener('click',focus);
+          document.querySelector("#li-"+name)?document.querySelector("#li-"+name).removeEventListener('click',focus):"";
           document.querySelector("#"+name).removeEventListener('mousedown',focus);
         }
       }
 
       function _close(){
         history.pushState('', '', '#');
-        document.querySelector("#li-"+name).removeEventListener('click',minimize);
-        document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace(" execute","");
+        document.querySelector("#li-"+name)?document.querySelector("#li-"+name).removeEventListener('click',minimize):"";
+        document.querySelector("#li-"+name)?document.querySelector("#li-"+name).className=document.querySelector("#li-"+name).className.replace(" execute",""):"";
         document.getElementById(name+'_close').removeEventListener('click',_close)
         CallResizingTabMaxMini(false);
         CallMovingTab(false);
@@ -205,18 +206,28 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
       }
 
 
+      focus();
       el.style.minWidth = MinWidth+'px';
       el.style.minHeight = MinHeight+'px';
       console.log('OpenTask component load : '+name);
-      document.querySelector("#li-"+name).className+=' execute';
+      document.querySelector("#li-"+name)?document.querySelector("#li-"+name).className+=' execute':"";
+      document.querySelector("#li-"+name)?document.querySelector("#li-"+name).addEventListener('click',minimize):"";
+      CallResizingTabMaxMini(true);
       CallFocus(true);
       CallMovingTab(true);
-      CallResizingTabMaxMini(true);
-      document.querySelector("#li-"+name).addEventListener('click',minimize);
       document.querySelectorAll("."+name)[0].addEventListener('click',focus);
-      document.querySelectorAll("."+name)[1].addEventListener('click',focus);
+      document.querySelectorAll("."+name)[1]?document.querySelectorAll("."+name)[1].addEventListener('click',focus):"";
       document.getElementById(name+'_close').addEventListener('click',_close);
   },[])
+
+  var show_content = []
+  if(content){
+    show_content.push(
+      <iframe key={"iframe-"+name} src={content} title={name}></iframe>
+    );
+  }else{
+    show_content.push(page)
+  }
 
   return(
       <div id={name} className='window' style={{zIndex:zindex}}>                    
@@ -228,7 +239,7 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus}) => {
             </div>
             <div className='container-title'>{name}</div>
           </div>
-          <div className="content">{page}</div>
+          <div className="content">{show_content}</div>
           <div className={"resizer-set"}>
               <div className="resizer n"></div>
               <div className="resizer s"></div>

@@ -27,14 +27,17 @@ function Index(directory){
   }
 
   execute();
-
+  
   return (
     <div className='screen'>
-      <div className="window-container">
-        <CreateWindow ExecuteApp={ExecuteApp} setarticle={setarticle} SetZindex={SetZindex}/>
-      </div>
-      <div className='app-container'>
-        <CreateIcon DesktopApp={DesktopApp} ExecuteApp={ExecuteApp} execute={execute}/>
+      <div className='wallpaper'></div>
+      <div className='Desktop'>
+        <div className="window-container">
+          <CreateWindow ExecuteApp={ExecuteApp} setarticle={setarticle} SetZindex={SetZindex} zindex={zindex}/>
+        </div>
+        <div className='app-container'>
+          <CreateIcon DesktopApp={DesktopApp} ExecuteApp={ExecuteApp} execute={execute}/>
+        </div>
       </div>
       <div className='dock'>
         <CreateDock ExecuteApp={ExecuteApp} execute={execute} />

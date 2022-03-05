@@ -1,31 +1,66 @@
 /* ============================== */
 /* 기본 태그 세팅 */
 /* ============================== */
+html,body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+}
 
-body{
-  margin: 0px;
-  overflow: hidden;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none; 
-  user-select:none;
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+iframe{
+  width: 100%;
+  height: 100%;
+  background-color: white;
 }
 
 /* ============================== */
 /* 스크린 */
 /* ============================== */
-#main{
-  background-image: url('../../../public/images/wallpaper/wallpaper.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
-}
+
 
 .screen{
   overflow:hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.wallpaper{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../../../public/images/wallpaper/wallpaper2.png');
+  background-position: 50%;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.Desktop{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 6rem;
 }
 
 /* ============================== */
@@ -42,12 +77,12 @@ body{
 /* ============================== */
 .dock {
   width: auto;
-  height: 60px;
+  height: 4rem;
   border-radius: 16px;
   display: flex;
   justify-content: center;
   position: absolute;
-  bottom: 50px;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -106,8 +141,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  width: 4rem;
   vertical-align: bottom;
   transition: 0.2s;
   transform-origin: 50% 100%;
@@ -165,34 +199,68 @@ body{
 /* ============================== */
 /* Desktop - 아이콘 */
 /* ============================== */
+
 .app-container{
-  position: absolute;
-  left: 50%;
-  top: 20%;
-  transform: translateX(-50%);
-  max-width: 32rem;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  padding: 1rem;
+  max-width: 34rem;
   justify-content: center;
   flex-shrink: 1;
   overflow-y: auto;
-  width: 100%;
+  padding: 1rem;
 }
-
-
+/* 
+@media screen and (min-width: 600px) {
+  .app-container{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 34rem;
+    justify-content: center;
+    flex-shrink: 1;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+}
+@media screen and (max-height: 570px){
+  .app-container{
+    top: 0px;
+    height: 60%;
+    overflow-y: scroll;
+    min-height: 5%;
+  }
+}
+@media screen and (max-width: 600px){
+  .app-container{
+    position: absolute;
+    left: 50%;
+    top: 40px;
+    transform: translateX(-50%);
+    max-width: 34rem;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    justify-content: center;
+    flex-shrink: 1;
+    overflow-y: auto;
+    width: 100%;
+    height: 60%;
+  }
+} */
 
 .app-container .Desktop-icon{
-  width: 5rem;
-  height: 5rem;
-  padding: 1.5rem;
+  -webkit-transition: background-color .2s;
   transition: background-color .2s;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
+  width: 8rem;
+  height: 8rem;
   flex-direction: column;
   justify-content: center;
+  padding: 1rem;
   border-radius: 0.2rem;
-  text-decoration-line: none;  
 }
 
 .app-container .Desktop-icon:hover{
@@ -291,6 +359,7 @@ body{
   margin-right: 0.5rem;
   transition: background-color .2s;
   height: 14px;
+  cursor: pointer;
 }
 
 .close{

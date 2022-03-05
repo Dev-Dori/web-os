@@ -2,7 +2,6 @@ import React,{ useEffect } from 'react';
 
 const CreateDock = ({ExecuteApp,execute}) => {
   useEffect(()=>{
-    console.log('ICON EFFECT ON');
     let icons = document.querySelectorAll(".main-app li .ico");
     
     icons.forEach((item, index) => {
