@@ -40,6 +40,8 @@ function App(){
               +"12. url로 실행 가능 패치\n"
               +"13. tap menu add\n"
               +"14. close issue patch\n"
+              +"15. create tab position random setting\n"
+              +"16. mobile tab position & size patch\n"
               ,state:false, IsDir:false, minsize:{width:600,height:500}, dock:true,
               icon:"images/icon/Settings.png"
             },

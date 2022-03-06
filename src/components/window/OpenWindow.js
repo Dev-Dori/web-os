@@ -13,7 +13,9 @@ const OpenWindow = ({id, name, page, zindex, close, minsize, _focus, content}) =
         MinWidth = 100;
         MinHeight = 100;
       }
-    
+      var position = Math.floor(Math.random() * 20);
+      document.getElementById(name).style.left=position+25+'%';
+      document.getElementById(name).style.top=position+10+'%';
       var State = {SizeStateMax:0,pre:{height:640,width:448,top:0,left:0}};
 
       function moving_tap(event){
@@ -26,7 +28,7 @@ const OpenWindow = ({id, name, page, zindex, close, minsize, _focus, content}) =
               document.addEventListener('click', a.onmouseup);
           }
 
-          a.style.position = 'absolute';
+          // a.style.position = 'absolute';
 
           moveAt(event.x, event.y);
 
@@ -177,10 +179,10 @@ const OpenWindow = ({id, name, page, zindex, close, minsize, _focus, content}) =
       function CallMovingTab(status){
         if(status){
           document.querySelector("#"+name+" .tab").addEventListener('mousedown',moving_tap);
-          document.querySelector("#"+name+" .tab").addEventListener('dblclick',moving_tap);
+          // document.querySelector("#"+name+" .tab").addEventListener('dblclick',moving_tap);
         }else{
           document.querySelector("#"+name+" .tab").removeEventListener('mousedown',moving_tap);
-          document.querySelector("#"+name+" .tab").removeEventListener('dblclick',moving_tap);
+          // document.querySelector("#"+name+" .tab").removeEventListener('dblclick',moving_tap);
         }
       }
       

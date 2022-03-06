@@ -380,7 +380,7 @@ img{
   display: flex;
   width: 640px;
   height: 448px;
-  position: absolute;
+  position: sticky;
   flex-direction: column;
   pointer-events: auto;
   border-radius: 15px;
@@ -396,6 +396,7 @@ img{
     height: 100% !important;
     top: 0px !important;
     left: 0px !important;
+    position: absolute !important;
   }
 }
 
