@@ -38,6 +38,8 @@ function App(){
               +"10. 바탕화면 - 아이콘 추가\n"
               +"11. index.js 코드 정리\n"
               +"12. url로 실행 가능 패치\n"
+              +"13. tap menu add\n"
+              +"14. close issue patch\n"
               ,state:false, IsDir:false, minsize:{width:600,height:500}, dock:true,
               icon:"images/icon/Settings.png"
             },

@@ -1,14 +1,17 @@
 import React from 'react';
 import OpenTask from '../window/OpenWindow';
 
-const CreateWindow = ({ExecuteApp,setarticle,SetZindex}) => {
+const CreateWindow = ({ExecuteApp,SetExecuteApp,SetZindex,SetUrl}) => {
     var article = [], zindex = [], i=0;
     function CallWindow(id,name,page,_zindex, minsize,content){
         return(<OpenTask key={id} id={id} name={name} page={page} zindex={_zindex} minsize={minsize}
           close={function(_id){
               console.log('close : '+_id)
               ExecuteApp[_id].state = false;
-              setarticle(article);
+              SetExecuteApp((ExecuteApp)=>{
+                  return { ...ExecuteApp }
+              });
+              SetUrl(document.URL);
           }}
           _focus={function(num){
               zindex = num;

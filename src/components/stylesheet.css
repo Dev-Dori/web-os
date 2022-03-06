@@ -266,6 +266,12 @@ img{
 /* Desktop - 아이콘 */
 /* ============================== */
 
+/* .app-container::before{
+  content: '';
+  position: absolute;
+  width: 50%;
+  border-top: 1px solid white;
+} */
 .app-container{
   position: relative;
   display: flex;
@@ -384,6 +390,14 @@ img{
   bottom: 200px;
 }
 
+@media (max-width: 575px) {  
+  .window-container>div{
+    width: 100% !important;
+    height: 100% !important;
+    top: 0px !important;
+    left: 0px !important;
+  }
+}
 
 
 

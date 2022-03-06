@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import '../stylesheet.css';
 
 
-const OpenTask = ({id, name, page, zindex, close, minsize, _focus, content}) => {    
+const OpenWindow = ({id, name, page, zindex, close, minsize, _focus, content}) => {    
   useEffect(()=>{
       let MinWidth = 0, MinHeight = 0;
       if(minsize){
@@ -254,4 +254,4 @@ const OpenTask = ({id, name, page, zindex, close, minsize, _focus, content}) => 
   );
 }
 
-export default OpenTask;
+export default OpenWindow;
